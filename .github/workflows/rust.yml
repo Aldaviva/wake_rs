@@ -1,0 +1,48 @@
+name: Rust
+
+on:
+  push:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_TARGET_ARMV7_UNKNOWN_LINUX_GNUEABIHF_LINKER: arm-linux-gnueabihf-gcc
+
+jobs:
+  build:
+    strategy:
+        matrix:
+          include:
+          - os: ubuntu-latest
+            toolchainTarget: armv7-unknown-linux-gnueabihf
+          - os: ubuntu-latest
+            toolchainTarget: x86_64-unknown-linux-gnu
+          - os: windows-latest
+            toolchainTarget: x86_64-pc-windows-msvc
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install APT dependencies
+      if: matrix.toolchainTarget == 'armv7-unknown-linux-gnueabihf'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc gcc-arm-linux-gnueabihf
+    
+    - name: Install toolchain target
+      run: rustup target add ${{ matrix.toolchainTarget }}
+    
+    - name: Build
+      run: cargo build --release --target ${{ matrix.toolchainTarget }} --verbose
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: wake_rs_${{ matrix.toolchainTarget }}
+        path: |
+          target/${{ matrix.toolchainTarget }}/release/wake_rs
+          target/${{ matrix.toolchainTarget }}/release/wake_rs.exe
+        if-no-files-found: error
