@@ -11,10 +11,6 @@ Send wake-on-LAN magic packets from the command line to the MAC addresses of you
 
 ## Installation
 1. Download the executable from the [**latest release**](https://github.com/Aldaviva/wake_rs/releases/latest) (recommended) or [latest build](https://nightly.link/Aldaviva/wake_rs/workflows/rust/master).
-1. Extract the executable file from the ZIP.
-    ```sh
-    unzip wake_rs_*.zip
-    ```
 1. *Linux only:* give the file the execution permission.
     ```sh
     chmod +x wake_rs
