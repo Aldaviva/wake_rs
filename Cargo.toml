@@ -8,8 +8,7 @@ build = "build.rs"
 [package.metadata.winres]
 OriginalFilename = "wake_rs.exe"
 LegalCopyright = "© 2022 Ben Hutchison"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+CompanyName = "Ben Hutchison"
 
 [dependencies]
 serde_json = "1.0.88"
