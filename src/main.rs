@@ -4,14 +4,18 @@ use std::env;
 use std::fs::File;
 use std::process::exit;
 use std::str::FromStr;
+use home::home_dir;
 
 use serde_json::{Map, Value};
+use wol::MacAddr;
 
 const CONFIG_FILENAME: &str = ".wake.json";
 
 fn main() {
-    let mut config_file_absolute_path = env::home_dir().unwrap();
+    let mut config_file_absolute_path = home_dir().unwrap();
     config_file_absolute_path.push(CONFIG_FILENAME);
+
+    //println!("Configuration file: {}", config_file_absolute_path.display());
 
     let config_file = File::open(config_file_absolute_path.as_path())
         .unwrap_or_else(|e| {
@@ -46,7 +50,7 @@ fn main() {
                 exit(1);
             });
 
-        let mac_address: wol::MacAddr = wol::MacAddr::from_str(mac_address_string)
+        let mac_address: MacAddr = MacAddr::from_str(mac_address_string)
             .unwrap_or_else(|e| {
                 eprintln!("Invalid MAC address {}: {}", &mac_address_string, e);
                 exit(1);

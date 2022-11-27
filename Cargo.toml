@@ -1,6 +1,6 @@
 [package]
 name = "wake_rs"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 serde_json = "1.0.88"
 wol-rs = "1.0.0"
+home = "0.5.4"
