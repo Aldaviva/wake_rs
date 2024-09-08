@@ -1,12 +1,13 @@
 # wake_rs
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Aldaviva/wake_rs/Rust?logo=github)](https://github.com/Aldaviva/wake_rs/actions/workflows/rust.yml)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Aldaviva/wake_rs/rust.yml?branch=master&logo=github)](https://github.com/Aldaviva/wake_rs/actions/workflows/rust.yml)
 
 Send wake-on-LAN magic packets from the command line to the MAC addresses of your computers configured in a JSON file.
 
 ## System requirements
 - Linux x64
 - Linux ARMv7
+- Linux ARMv8
 - Windows x64
 
 ## Installation
@@ -57,11 +58,11 @@ Sent wake-on-LAN packet to 68-05-CA-C1-64-98
 
 ## Performance
 
-**Environment:** Raspberry Pi 2 Model B, 900 MHz 32-bit quad-core ARM Cortex-A7, 1 GB RAM
+**Environment:** Raspberry Pi 3 Model B, 1.4 GHz 64-bit quad-core ARM Cortex-A53, 1 GB RAM
 
 |Language|Mean runtime|
 |---|---:|
-|Node.js 12 with tab completion|3,530 ms|
-|Node.js 12|1,301 ms|
-|.NET 7|1,505 ms|
-|Rust 1.64|9 ms|
+|Node.js 12|2,188 ms|
+|.NET 8|871 ms|
+|.NET 8 AOT|63 ms|
+|Rust 1.81|15 ms|
